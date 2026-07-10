@@ -1,0 +1,8 @@
+*.o
+*.hi
+Main
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
