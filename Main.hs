@@ -19,7 +19,13 @@ loop estudantes = do
     hFlush stdout
     opcao <- getLine
     case opcao of
-        "1" -> putStrLn "Insercao temporariamente indisponivel." >> loop estudantes
+        "1" -> do
+            putStr "Introduza o nome do estudante: "
+            hFlush stdout
+            nome <- getLine
+            let novosEstudantes = estudantes ++ [nome]
+            putStrLn "Estudante adicionado com sucesso!"
+            loop novosEstudantes
         "2" -> putStrLn "Listagem temporariamente indisponivel." >> loop estudantes
         "3" -> putStrLn "Contagem temporariamente indisponivel." >> loop estudantes
         "4" -> putStrLn "Procura temporariamente indisponivel." >> loop estudantes
