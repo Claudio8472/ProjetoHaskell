@@ -26,8 +26,17 @@ loop estudantes = do
             let novosEstudantes = estudantes ++ [nome]
             putStrLn "Estudante adicionado com sucesso!"
             loop novosEstudantes
-        "2" -> putStrLn "Listagem temporariamente indisponivel." >> loop estudantes
-        "3" -> putStrLn "Contagem temporariamente indisponivel." >> loop estudantes
+        "2" -> do
+            if null estudantes
+                then putStrLn "A lista de estudantes esta vazia."
+                else do
+                    putStrLn "\n--- Lista de Estudantes ---"
+                    mapM_ (\(i, nome) -> putStrLn (show i ++ ". " ++ nome)) (zip [1..] estudantes)
+            loop estudantes
+        "3" -> do
+            let total = length estudantes
+            putStrLn ("Total de estudantes registados: " ++ show total)
+            loop estudantes
         "4" -> putStrLn "Procura temporariamente indisponivel." >> loop estudantes
         "5" -> putStrLn "A sair..."
         _   -> putStrLn "Opcao invalida!" >> loop estudantes
