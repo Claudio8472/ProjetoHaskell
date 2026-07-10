@@ -37,6 +37,15 @@ loop estudantes = do
             let total = length estudantes
             putStrLn ("Total de estudantes registados: " ++ show total)
             loop estudantes
-        "4" -> putStrLn "Procura temporariamente indisponivel." >> loop estudantes
-        "5" -> putStrLn "A sair..."
-        _   -> putStrLn "Opcao invalida!" >> loop estudantes
+        "4" -> do
+            putStr "Introduza o nome a procurar: "
+            hFlush stdout
+            nome <- getLine
+            if nome `elem` estudantes
+                then putStrLn ("O estudante '" ++ nome ++ "' foi encontrado.")
+                else putStrLn ("O estudante '" ++ nome ++ "' nao foi encontrado.")
+            loop estudantes
+        "5" -> putStrLn "A fechar o programa. Ate breve!"
+        _   -> do
+            putStrLn "Opcao invalida! Tente novamente."
+            loop estudantes
